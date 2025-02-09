@@ -10,37 +10,36 @@ const App = () => {
   const [currentUser, setCurrentUser] = useState(null);
   const [logggedInUserData, setLogggedInUserData] = useState(null);
 
-  const authData = useContext(AuthContext);
+  const [userData, setUserData] = useContext(AuthContext);
 
-  console.log(authData);
+  console.log(userData);
 
-  useEffect(()=>{
-    const loggedInUser = localStorage.getItem('loggedInUser')
-    
-    if(loggedInUser){
-      const userData = JSON.parse(loggedInUser)
-      setCurrentUser(userData.role)
-      setLogggedInUserData(userData.data)
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("loggedInUser");
+
+    if (loggedInUser) {
+      const userData = JSON.parse(loggedInUser);
+      setCurrentUser({ role: userData.role });
+      setLogggedInUserData(userData.data);
     }
-
-  },[])
+  }, []);
 
   const handleLogin = (email, password) => {
     if (
-      authData &&
-      authData.admin.email == email &&
-      authData.admin.password == password
+      
+      email == 'admin@me.com' &&
+      password == 123
     ) {
       setCurrentUser({ role: "admin" });
-      setLogggedInUserData(authData.admin);
+      // setLogggedInUserData(authData.admin);
 
       localStorage.setItem(
         "loggedInUser",
-        JSON.stringify({ role: "admin", data: authData.admin })
+        JSON.stringify({ role: "admin" })
       );
       console.log("this is admin");
-    } else if (authData) {
-      const employee = authData.employee.find((e) => {
+    } else if (userData) {
+      const employee = userData.find((e) => {
         return e.email == email && e.password == password;
       });
       if (employee) {
@@ -51,6 +50,7 @@ const App = () => {
         );
 
         setLogggedInUserData(employee);
+        console.log(employee);
       }
     } else {
       alert("Invalid credentials. Please try again.");
@@ -58,15 +58,18 @@ const App = () => {
   };
 
   // setLocalStorage();
-
+  // localStorage.clear();
   return (
     <>
       {!currentUser ? (
         <Login handleLogin={handleLogin} />
       ) : currentUser.role === "admin" ? (
-        <AdminDashboard data={logggedInUserData} />
+        <AdminDashboard changeUser={setCurrentUser} data={logggedInUserData} />
       ) : (
-        <EmployeeDashboard data={logggedInUserData} />
+        <EmployeeDashboard
+          changeUser={setCurrentUser}
+          data={logggedInUserData}
+        />
       )}
     </>
   );

@@ -98,10 +98,10 @@ const employee = [
         description: "Improve the performance of slow database queries.",
         date: "2023-10-15",
         category: "Database",
-        active: true,
+        active: false,
         newtask: false,
         completed: false,
-        failed: false,
+        failed: true,
       },
       {
         title: "Create Marketing Campaign",
