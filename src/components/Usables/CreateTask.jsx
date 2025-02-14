@@ -118,7 +118,7 @@ const CreateTask = () => {
             className="bg-transparent outline-none w-4/5 text-sm rounded-md border border-gray-600 px-3 py-2 h-28 focus:border-emerald-400 transition-all duration-200"
           ></textarea>
 
-          <button className="bg-emerald-500 w-4/5 mt-5 rounded-md border border-emerald-500 py-2 font-semibold text-white transition-all duration-200 hover:bg-emerald-600">
+          <button className="bg-emerald-500 cursor-pointer w-4/5 mt-5 rounded-md border border-emerald-500 py-2 font-semibold text-white transition-all duration-200 hover:bg-emerald-600">
             ✅ Create Task
           </button>
         </div>

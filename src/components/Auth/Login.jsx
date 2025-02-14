@@ -14,6 +14,29 @@ const Login = ({ handleLogin }) => {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-950">
+      <div className="absolute top-0 right-0 p-5 flex flex-col gap-1 bg-gray-900 text-white text-sm">
+        <h1 className="text-lg">Credentials to login Admin</h1>
+        <p>admin@me.com</p>
+        <p>123</p>
+        <h1 className="text-lg">Credentials to login employees</h1>
+        <p>employee1-6@example.com</p>
+        <p>123</p>
+        <details className="text-nowrap  w-full">
+          {" "}
+          <p className=" w-full text-nowrap">
+            Task can only be assigned using name of the employee
+          </p>
+          <ul className="bullet-disc ml-5 ">
+            {" "}
+            <li>Aarav</li>
+            <li>Vihaan</li>
+            <li>Kabir</li>
+            <li>Ishaan</li>
+            <li>Aryan</li>
+          </ul>
+        </details>{" "}
+      </div>
+
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
